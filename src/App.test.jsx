@@ -24,8 +24,9 @@ const user = {
 
 // 🚨 Create your server
 const server = setupServer(
-  rest.get(`${process.env.REACT_APP_SUPABASE_URL}/rest/v1/users`, (req, res, ctx) =>
-    res(ctx.json([user]))
+  rest.get(
+    `${process.env.REACT_APP_SUPABASE_URL}/rest/v1/users`,
+    (req, res, ctx) => res(ctx.json([user])) // need to wrap user in [] b/c server returns an array and we are just giving it an object
   )
 )
 
@@ -65,8 +66,9 @@ test('Should render the header with Sasuke 🌬️🔥', async () => {
 
   // 🚨 Use the server to change the response for this test
   server.use(
-    rest.get(`${process.env.REACT_APP_SUPABASE_URL}/rest/v1/users`, (req, res, ctx) =>
-      res(ctx.json([sasuke]))
+    rest.get(
+      `${process.env.REACT_APP_SUPABASE_URL}/rest/v1/users`,
+      (req, res, ctx) => res(ctx.json([sasuke])) // need to wrap sasuke in [] b/c server returns an array and we are just giving it an object
     )
   )
 
