@@ -28,10 +28,13 @@ const server = setupServer(
 );
 
 // 🚨 Listen for server start
-beforeAll()
+beforeAll(() => server.listen());
+
+//optional After each handlers/cleanup
+afterEach(() => server.resetHandlers());
 
 // 🚨 Close server when complete
-afterAll()
+afterAll(() => server.close());
 
 test('Should render the header', async () => {
   render(<App />)
